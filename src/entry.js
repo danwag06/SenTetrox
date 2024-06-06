@@ -21,10 +21,10 @@ const load = async () => {
     Graphics.clearRect(0, 0, Canvas.width, Canvas.height);
     loadingDiv.style.display = "none";
     document.querySelector("canvas").style.display = "block";
+    Game.start();
     const res = await haste.play();
     if (res.playId) {
       localStorage.setItem("playId", res.playId);
-      Game.start();
     }
   }
 
