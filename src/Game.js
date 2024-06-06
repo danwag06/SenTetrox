@@ -8,7 +8,7 @@ let oldTime = 0;
 
 export let Game = {
   start() {
-    setScene(new StartScreen(new Level()));
+    setSce(new StartScreen(new Level()));
     requestAnimationFrame(Game.tick);
   },
 

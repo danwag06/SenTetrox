@@ -502,16 +502,18 @@ export class Level {
     setTimeout(() => VictorySong.play(), 700);
   }
 
-  setGameOver() {
+  async setGameOver() {
     this.endAnimation = new EndAnimation(this, true);
     MainSong.tapeStop();
     const playId = localStorage.getItem("playId");
-    haste.submitScore(playId, currentScore);
+    await haste.submitScore(playId, currentScore);
     localStorage.removeItem("playId");
-    setTimeout(() => {
-      haste.play();
+    const res = await haste.play();
+    console.log(res);
+    if (res.playId) {
+      localStorage.setItem("playId", res.playId);
       Game.start();
-    }, 1300);
+    }
   }
 
   setBack2Back() {

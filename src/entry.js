@@ -17,18 +17,15 @@ const load = async () => {
   loadingDiv.style.display = "flex";
   await loadAssets();
 
-  haste.on("play", (data) => {
-    if (data.playId) {
-      localStorage.setItem("playId", data.playId);
-    }
-  });
-
   async function startGame() {
     Graphics.clearRect(0, 0, Canvas.width, Canvas.height);
     loadingDiv.style.display = "none";
     document.querySelector("canvas").style.display = "block";
-    haste.play();
-    Game.start();
+    const res = await haste.play();
+    if (res.playId) {
+      localStorage.setItem("playId", res.playId);
+      Game.start();
+    }
   }
 
   startGame();
