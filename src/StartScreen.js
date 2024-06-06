@@ -5,6 +5,7 @@ import { drawSprite, Graphics, Canvas } from "./Graphics";
 import { LogoSprite, VictorySong } from "./Assets";
 import { drawTextCentered } from "./fontUtils";
 import { PauseScreen } from "./PauseScreen";
+import { haste } from "./entry";
 
 export class StartScreen extends Overlay {
   constructor(scene) {
@@ -13,7 +14,7 @@ export class StartScreen extends Overlay {
     this.blinkingTimer = 0;
   }
   step() {
-    if (Input.getAnyKey()) {
+    if (!!localStorage.getItem("playId")) {
       setScene(new PauseScreen(this.scene, true));
     }
 
@@ -28,7 +29,7 @@ export class StartScreen extends Overlay {
     drawSprite(LogoSprite, 0, 0, 0, 2, 2);
 
     if (this.blinkingTimer % 60 < 30) {
-      drawTextCentered("PRESS ANY BUTTON TO START", 0, 130);
+      drawTextCentered("LOCK HST TO START", 0, 130);
     }
   }
 }
