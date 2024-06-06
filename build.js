@@ -24,7 +24,7 @@ const inputOptions = {
     }),
     terser(),
   ],
-  external: ["haste-arcade-sdk"],
+  // Do not treat haste-arcade-sdk as an external dependency
 };
 
 const outputOptions = {
@@ -32,7 +32,7 @@ const outputOptions = {
   format: "iife",
   name: "app",
   globals: {
-    "haste-arcade-sdk": "hasteArcadeSdk",
+    "haste-arcade-sdk": "hasteArcadeSdk", // This can be removed since it's not external
   },
 };
 
