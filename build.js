@@ -1,10 +1,15 @@
 const rollup = require("rollup");
 const fs = require("fs");
-const tempfile = require("tempfile");
+const path = require("path");
 const { execFile } = require("child_process");
 const advzip = require("advzip-bin");
 const minifyHtml = require("html-minifier").minify;
 const { default: terser } = require("@rollup/plugin-terser");
+
+// Ensure output directory exists
+if (!fs.existsSync("public")) {
+  fs.mkdirSync("public");
+}
 
 const inputOptions = {
   input: "src/entry.js",
@@ -23,7 +28,7 @@ const inputOptions = {
 };
 
 const outputOptions = {
-  file: "dist/build.js",
+  file: "public/build.js",
   format: "iife",
   name: "app",
   globals: {
@@ -35,7 +40,7 @@ const advZip = () => {
   return new Promise((resolve, reject) => {
     execFile(
       advzip,
-      ["-4", "-i", 1000, "-a", "./dist/dist.zip", "./dist/index.html"],
+      ["-4", "-i", 1000, "-a", "./public/dist.zip", "./public/index.html"],
       (err) => {
         if (err) {
           return reject(err);
@@ -65,11 +70,19 @@ async function build() {
     (match) => newScriptTag
   );
 
-  fs.writeFileSync("dist/index.html", finalHtml, { encoding: "utf-8" });
+  fs.writeFileSync("public/index.html", finalHtml, { encoding: "utf-8" });
+
+  // Copy other assets to the public directory
+  fs.copyFileSync("manifest.json", "public/manifest.json");
+  fs.copyFileSync("assets/eyes.gif", "public/eyes.gif");
+  fs.copyFileSync("assets/font.gif", "public/font.gif");
+  fs.copyFileSync("assets/gamepad.gif", "public/gamepad.gif");
+  fs.copyFileSync("assets/logo.gif", "public/logo.gif");
+  fs.copyFileSync("assets/texts.gif", "public/texts.gif");
 
   await advZip();
 
-  const finalFileSize = fs.readFileSync("./dist/dist.zip").byteLength;
+  const finalFileSize = fs.readFileSync("./public/dist.zip").byteLength;
 
   const limit = 13 * 1024;
   const perc = ((finalFileSize * 100) / limit).toFixed(1);

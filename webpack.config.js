@@ -6,7 +6,7 @@ module.exports = {
     app: ["./src/entry.js"],
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "public"), // Ensure output path is 'public'
     filename: "build.js",
   },
   module: {
@@ -29,7 +29,7 @@ module.exports = {
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, "public"),
     compress: true,
     port: 8080,
     hot: true,

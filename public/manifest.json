@@ -1,0 +1,14 @@
+{
+  "name": "SenTetrox",
+  "description": "A variant on a famous classic where the tetrominoes are sentient! The tetrominoes will flee *back* up when they have figured out their purpose in the playing field (to die to make lines)!\nDepending on your playing style it might take a while before you see one leave the game.\nGood luck and thank you for playing!",
+  "images" : {
+    "image_large": "images/large.jpg",
+    "image_thumbnail": "images/small.jpg"
+  },
+  "categories": ["Desktop"],
+  "user" : {
+    "name": "sirxemic",
+    "website": "https://sirxemic.com/",
+    "twitter": "sirxemic"
+  }
+}
