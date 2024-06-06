@@ -4,7 +4,7 @@ export let currentScene;
 export let currentScore = 0;
 export let lineClears = 0;
 export let currentLevel = 1;
-export const hasteGameId = "f8c22e6c-1086-4529-8800-2c72f98b9915";
+export const hasteGameId = "df185b3b-a2c5-4a67-ac62-ee93015e4e1e";
 
 export function setScene(scene) {
   currentScene = scene;

@@ -4,7 +4,7 @@ import { drawTextCentered, Graphics, Canvas } from "./Graphics";
 import { GameService, Origin } from "haste-arcade-sdk";
 import { hasteGameId } from "./globals";
 
-export const haste = new GameService(hasteGameId, Origin.DEV);
+export const haste = new GameService(hasteGameId, Origin.PROD);
 localStorage.removeItem("playId");
 
 document.addEventListener("DOMContentLoaded", function () {
