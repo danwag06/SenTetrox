@@ -12,16 +12,16 @@ document.addEventListener("DOMContentLoaded", function () {
   load();
 });
 
-haste.on("play", (data) => {
-  if (data.playId) {
-    localStorage.setItem("playId", data.playId);
-  }
-});
-
 const load = async () => {
   const loadingDiv = document.getElementById("generate-audio");
   loadingDiv.style.display = "flex";
   await loadAssets();
+
+  haste.on("play", (data) => {
+    if (data.playId) {
+      localStorage.setItem("playId", data.playId);
+    }
+  });
 
   async function startGame() {
     Graphics.clearRect(0, 0, Canvas.width, Canvas.height);
